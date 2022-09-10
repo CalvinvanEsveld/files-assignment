@@ -26,9 +26,9 @@ def cache_zip(zip_path, cache_path):
 
 def cached_files():
     filelist = []
-    dir = os.path.abspath(r'/Users/calvin/Desktop/Winc/files/cache')
-    for f in os.listdir(dir):
-        filelist.append(os.path.join(dir, f))
+    path = os.path.abspath(r'/Users/calvin/Desktop/Winc/files/cache')
+    for f in os.listdir(path):
+        filelist.append(os.path.join(path, f))
     return filelist
 
 
@@ -38,7 +38,7 @@ def find_password(filelist):
             for line in f.readlines():
                 if 'password' in line:
                     space = line.find(" ")
-                    return line[space::].strip()
+                    return line[space::].strip() 
 
 
 
