@@ -2,21 +2,17 @@ __winc_id__ = "ae539110d03e49ea8738fd413ac44ba8"
 __human_name__ = "files"
 
 import os
-import shutil
 from zipfile import ZipFile
 
 
-def clean_cache():
-    newpath = r'/Users/calvin/Desktop/Winc/files/cache' 
+newpath = os.path.join(os.getcwd(), 'files' ,'cache')
+
+def clean_cache(): 
     if not os.path.exists(newpath):
         os.makedirs(newpath)
     else:
         for f in os.listdir(newpath):
-            path = os.path.join(newpath, f)
-            try:
-                shutil.rmtree(path)
-            except:
-                os.remove(path) 
+            os.remove(os.path.join(newpath, f))
 
 
 def cache_zip(zip_path, cache_path):
@@ -26,7 +22,7 @@ def cache_zip(zip_path, cache_path):
 
 def cached_files():
     filelist = []
-    path = os.path.abspath(r'/Users/calvin/Desktop/Winc/files/cache')
+    path = os.path.abspath(newpath)
     for f in os.listdir(path):
         filelist.append(os.path.join(path, f))
     return filelist
@@ -39,7 +35,6 @@ def find_password(filelist):
                 if 'password' in line:
                     space = line.find(" ")
                     return line[space::].strip() 
-
 
 
 
